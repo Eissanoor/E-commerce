@@ -183,7 +183,7 @@ app.post("/otp", async(req, res) => {
 
 
     } catch (e) {
-        res.status(400).send("invalid your email");
+        res.status(400).send(" invalid your email");
     }
 })
 
