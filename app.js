@@ -190,7 +190,7 @@ app.post("/otp", async(req, res) => {
 app.get("/otp", (req, res) => {
 
     const otp = client.messages.create({
-            body: 'Hello zakirya senga jkashd yi',
+            body: '  Hello zakirya senga jkashd yi',
             to: '+923015199394',
             from: '+18508206363'
         }).then(message => console.log(message))
