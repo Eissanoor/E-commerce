@@ -72,7 +72,7 @@ app.use(express.static(staticpath));
 
 app.get('/', (req, res) => {
         // eisa();
-        res.render("index")
+        res.send("index")
     })
     //registeration page
 app.get("/register", (req, res) => {
