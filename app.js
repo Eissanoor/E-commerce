@@ -321,7 +321,7 @@ app.post("/addorder", upload.single('profile'), async(req, res) => {
 
 
 
-app.get("/add-order", async(req, res) => {
+app.get("/addorder", async(req, res) => {
 
         const getmens = await Addorder.find({});
         res.status(201).send(getmens);
