@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 
 const multer = require('multer');
 
-const DB = 'mongodb+srv://eissanoor:Eisa.123@cluster0.m7pfw.mongodb.net/registration?retryWrites=true&w=majority';
+const DB = 'mongodb+srv://eissanoor:Eisa.123@cluster0.m7pfw.mongodb.net/egistration?retryWrites=true&w=majority';
 mongoose.connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true
