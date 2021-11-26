@@ -42,8 +42,6 @@ app.post("/upload", (req, res) => {
 })
 
 //registeration module
-const Register = require("./models/register");
-const Addpro = require("./models/addproduct")
 
 ///randam number generate
 const Reset = require("./models/otp");
@@ -52,8 +50,9 @@ const Reset = require("./models/otp");
 const config = require("./config")
 const client = require('twilio')(config.accountID, config.authToken);
 
-//database
-// require("./db/cons");
+const Addpro = require("./models/addproduct")
+    //database
+    // require("./db/cons");
 
 ///Add new costomer
 const Addnew = require("./models/addnew");
@@ -62,8 +61,8 @@ const Addorder = require("./models/addorder")
 const port = process.env.PORT || 8000
     //mongodb+srv://eissanoor:Eisa.123@cluster0.m7pfw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
 //hbs for 
 //views for
@@ -91,6 +90,7 @@ app.get("/register", (req, res) => {
     res.send("register");
 
 })
+const Register = require("./models/register");
 app.post("/register", async(req, res) => {
 
         try {
