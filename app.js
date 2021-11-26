@@ -2,8 +2,19 @@ const express = require('express')
 const app = express();
 const hbs = require("hbs");
 const path = require("path");
+const mongoose = require("mongoose")
 
 const multer = require('multer');
+
+const DB = 'mongodb+srv://eissanoor:Eisa.123@cluster0.m7pfw.mongodb.net/registration?retryWrites=true&w=majority';
+mongoose.connect(DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+
+}).then(() => {
+    console.log("good ho gaya");
+
+}).catch((e) => console.log("no connection"))
 
 const storage = multer.diskStorage({
     destination: "./public/upload",
@@ -42,14 +53,14 @@ const config = require("./config")
 const client = require('twilio')(config.accountID, config.authToken);
 
 //database
-require("./db/cons");
+// require("./db/cons");
 
 ///Add new costomer
 const Addnew = require("./models/addnew");
 const Addorder = require("./models/addorder")
 
 const port = process.env.PORT || 8000
-
+    //mongodb+srv://eissanoor:Eisa.123@cluster0.m7pfw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
