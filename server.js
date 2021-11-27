@@ -3,7 +3,7 @@ const app = express();
 const hbs = require("hbs");
 const path = require("path");
 const dotenv = require("dotenv");
-
+const bodyparser = require("body-parser");
 dotenv.config({ path: 'config.env' })
 const multer = require('multer');
 ////
@@ -54,8 +54,8 @@ const Addorder = require("./models/addorder")
 const port = process.env.PORT || 8000
     //mongodb+srv://eissanoor:Eisa.123@sasa.m7pfw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
-app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+app.use(bodyparser.urlencoded({ extended: true }));
+app.use(express.json());
 
 //hbs for 
 //views for
