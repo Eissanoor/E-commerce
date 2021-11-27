@@ -39,7 +39,7 @@ app.post("/upload", (req, res) => {
 const Reset = require("./models/otp");
 
 ////phone authentication
-const config = require("./config")
+const config = require("./config1")
 const client = require('twilio')(config.accountID, config.authToken);
 
 const Addpro = require("./models/addproduct")
