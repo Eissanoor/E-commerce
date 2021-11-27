@@ -3,9 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    "engines": {
-        "node": "v14.17.5"
-    },
+
     "scripts": {
         "start": "node ./server.js"
     },
@@ -18,8 +16,8 @@
         "express": "^4.17.1",
         "hbs": "^4.1.2",
         "mongoose": "^6.0.13",
-        "multer": "^1.4.3",
-        "twilio": "^3.70.0"
+        "multer": "^1.4.3"
+
 
     }
 }
