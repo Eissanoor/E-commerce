@@ -1,10 +1,10 @@
 const mongoose = require("mongoose")
-mongoose.connect("mongodb://localhost:27017/registration", {
-    // useCreateIndex:true,
+const DB = 'mongodb+srv://eissanoor:Eisa.123@cluster0.bpuor.mongodb.net/khaaaad?retryWrites=true&w=majority';
+mongoose.connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true
+
 }).then(() => {
     console.log("good ho gaya");
-}).catch((e) => {
-    console.log("Error not good");
-})
+
+}).catch((e) => console.log("no connection"))
