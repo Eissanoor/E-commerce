@@ -334,7 +334,7 @@ app.get("/addorder", async(req, res) => {
 
 app.post("/addpro", upload.single('profile'), async(req, res) => {
     try {
-        const addEmp = new Addpro.insertMany({
+        const addEmp = new this.Addpro.insertMany({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             company: req.body.company,
