@@ -29,9 +29,6 @@
         "twilio": "^3.70.0",
         "validator": "^13.7.0",
         "web-push": "^3.4.5"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.15"
-
     }
+
 }
