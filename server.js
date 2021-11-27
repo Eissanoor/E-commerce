@@ -78,9 +78,10 @@ app.get('/', (req, res) => {
         res.send("indexakjsdkjsd")
     })
     //registeration page
-app.get("/register", (req, res) => {
+app.get("/register", async(req, res) => {
 
-    res.send("register");
+    const getmens = await Register.find({});
+    res.status(201).send(getmens);
 
 })
 const Register = require("./models/register");
@@ -266,7 +267,7 @@ app.post("/addnew", upload.single('profile'), async(req, res) => {
 })
 
 app.get("/addnew", async(req, res) => {
-    console.log("jajsa");
+
     const getmens = await Addnew.find({});
     res.status(201).send(getmens);
 })
