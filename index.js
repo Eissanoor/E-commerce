@@ -50,7 +50,7 @@ require("./db/cons");
 const Addnew = require("./models/addnew");
 const Addorder = require("./models/addorder")
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 29790
     //mongodb+srv://eissanoor:Eisa.123@sasa.m7pfw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 app.use(express.urlencoded({ extended: true }));
@@ -73,7 +73,7 @@ const staticpath = path.join(__dirname, "./public");
 app.use(express.static(staticpath));
 
 app.get('/', (req, res) => {
-        // eisa();
+
         res.send("index")
     })
     //registeration page

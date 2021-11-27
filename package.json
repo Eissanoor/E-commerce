@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node ./app.js",
+        "test": "lsjadhkjsadh",
+        "start": "node ./index.js",
         "dev": "nodemon ./app.js"
     },
     "author": "",
@@ -28,5 +29,6 @@
     },
     "devDependencies": {
         "nodemon": "^2.0.15"
+
     }
 }
