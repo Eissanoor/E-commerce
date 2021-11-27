@@ -334,7 +334,7 @@ app.get("/addorder", async(req, res) => {
 
 app.post("/addpro", upload.single('profile'), async(req, res) => {
     try {
-        const addEmp = new this.Addpro.insertMany({
+        const addEmp = new Addpro({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             company: req.body.company,
@@ -362,6 +362,11 @@ app.post("/addpro", upload.single('profile'), async(req, res) => {
     }
 
 
+})
+app.get("/addpro", async(req, res) => {
+
+    const getmens = await Addpro.find({});
+    res.status(201).send(getmens);
 })
 
 app.listen(port, () => {
