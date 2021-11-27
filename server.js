@@ -45,7 +45,7 @@ const client = require('twilio')(config.accountID, config.authToken);
 
 const Addpro = require("./models/addproduct")
     //database
-require("./db/cons");
+    // require("./db/cons");
 
 ///Add new costomer
 const Addnew = require("./models/addnew");
