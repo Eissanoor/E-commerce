@@ -6,5 +6,6 @@ mongoose.connect(DB, {
 
 }).then(() => {
     console.log("good ho gaya");
+    ///
 
 }).catch((e) => console.log("no connection"))
