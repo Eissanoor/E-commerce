@@ -74,7 +74,7 @@ app.use(express.static(staticpath));
 
 app.get('/', (req, res) => {
 
-        res.send("index")
+        res.send("indexakjsdkjsd")
     })
     //registeration page
 app.get("/register", (req, res) => {

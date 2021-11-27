@@ -7,9 +7,9 @@
         "node": "v14.17.5"
     },
     "scripts": {
-        "test": "lsjadhkjsadh",
-        "start": "node ./index.js",
-        "dev": "nodemon ./index.js"
+
+        "start": "node ./index.js"
+
     },
     "author": "",
     "license": "ISC",
