@@ -53,7 +53,7 @@ const Addorder = require("./models/addorder")
 const port = process.env.PORT || 29790
     //mongodb+srv://eissanoor:Eisa.123@sasa.m7pfw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 // app.use(express.json());
 
 //hbs for 
