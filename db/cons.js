@@ -12,4 +12,4 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb+srv://eissanoor:Eisa.123@cl
     console.log("good ho gaya");
     ///
 
-}).catch((e) => console.log("no connection"))
+}).catch((e) => console.log(e))
