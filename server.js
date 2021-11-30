@@ -41,7 +41,7 @@ app.post("/upload", (req, res) => {
 const Reset = require("./models/otp");
 
 ////phone authentication
-const config = require("./config1")
+const config = require("./config")
 const client = require('twilio')(config.accountID, config.authToken);
 
 const Addpro = require("./models/addproduct")
@@ -210,7 +210,7 @@ app.get("/varify", (req, res) => {
 
     client
         .verify
-        .services(config1.serviceID)
+        .services(config.serviceID)
         .verifications
         .create({
             to: `+${req.query.phonenumber}`,
