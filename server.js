@@ -210,7 +210,7 @@ app.get("/varify", (req, res) => {
 
     client
         .verify
-        .services(config.serviceID)
+        .services(config1.serviceID)
         .verifications
         .create({
             to: `+${req.query.phonenumber}`,
