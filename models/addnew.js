@@ -7,7 +7,7 @@ const empoleeSchema = new mongoose.Schema({
         company: String,
         email: String,
         phone: Number,
-        date: Number,
+        date: Date,
         city: String,
         state: Number,
         zcode: Number,

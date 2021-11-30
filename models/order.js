@@ -11,7 +11,6 @@ const empoleeSchema = new mongoose.Schema({
         counrty: String,
 
         price: Number,
-        quantity: { type: Number },
 
 
         profile: String,

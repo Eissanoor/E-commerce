@@ -6,8 +6,9 @@ const dotenv = require("dotenv");
 const bodyparser = require("body-parser");
 dotenv.config({ path: 'config.env' })
 const multer = require('multer');
+const crypto = require("crypto");
 ////
-
+const Order = require("./models/order")
 
 const storage = multer.diskStorage({
     destination: "./public/upload",
@@ -54,7 +55,7 @@ const Addorder = require("./models/addorder")
 const port = process.env.PORT || 8000
     //mongodb+srv://eissanoor:Eisa.123@sasa.m7pfw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
-app.use(bodyparser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //hbs for 
@@ -242,7 +243,7 @@ app.post("/addnew", upload.single('profile'), async(req, res) => {
             company: req.body.company,
             email: req.body.email,
             phone: req.body.phone,
-            date: req.body.date,
+            date: new Date(),
             city: req.body.city,
             state: req.body.state,
             zcode: req.body.zcode,
@@ -281,23 +282,22 @@ app.get("/addnew/:id", async(req, res) => {
 
 app.patch("/addnew/:id", async(req, res) => {
 
-    try {
-        const _id = req.params.id
-        const getmens = await Addnew.findByIdAndUpdate(_id, req.body, {
-            new: true
-        });
-        res.status(201).send(getmens);
+        try {
+            const _id = req.params.id
+            const getmens = await Addnew.findByIdAndUpdate(_id, req.body, {
+                new: true
+            });
+            res.status(201).send(getmens);
 
 
-    } catch (error) {
-        res.status(400).send(error)
-    }
+        } catch (error) {
+            res.status(400).send(error)
+        }
 
 
 
-})
-
-//////////add order
+    })
+    //////////add order
 app.post("/addorder", upload.single('profile'), async(req, res) => {
     try {
         const addorder = new Addorder({
@@ -320,16 +320,12 @@ app.post("/addorder", upload.single('profile'), async(req, res) => {
     } catch (e) {
         res.status(400).send(e);
     }
-
-
 })
-
-
-
 app.get("/addorder", async(req, res) => {
 
-        const getmens = await Addorder.find({});
+        const getmens = await Addorder.find({}, { firstname: 1, email: 1 });
         res.status(201).send(getmens);
+        console.log(getmens);
     })
     ////////// add product
 
@@ -369,6 +365,68 @@ app.get("/addpro", async(req, res) => {
     const getmens = await Addpro.find({});
     res.status(201).send(getmens);
 })
+
+////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////ORDER/////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+app.post("/order", upload.single('profile'), async(req, res) => {
+
+    const OrderId = crypto.randomBytes(1).toString("hex");
+    try {
+
+        const arder = new Order({
+
+            name: req.body.name,
+            date: new Date(),
+            shippingAddress: req.body.shippingAddress,
+            street: req.body.street,
+            city: req.body.city,
+            postcode: req.body.postcode,
+            counrty: req.body.counrty,
+            email: req.body.email,
+            OrderId: OrderId,
+            profile: req.file.filename,
+            brand: req.body.brand,
+            material1: req.body.material1,
+            location1: req.body.location1,
+            material2: req.body.material2,
+            location2: req.body.location2,
+            material3: req.body.material3,
+            location3: req.body.location3,
+            material4: req.body.material4,
+            location4: req.body.location4,
+            material5: req.body.material5,
+            location5: req.body.location5,
+
+            bag: req.body.bag * 700,
+            shoes: req.body.shoes * 500,
+            laptop: req.body.laptop * 45000,
+        })
+        const order = await arder.save();
+        res.status(201).send(order);
+
+    } catch (error) {
+        res.status(401).send(error)
+    }
+})
+
+app.get("/order", async(req, res) => {
+
+    const getorder = await Order.find({},
+
+        {
+            name: 1,
+            date: 1,
+            shippingAddress: 1,
+            email: 1
+        },
+
+    );
+    res.status(201).send(getorder);
+})
+
+
 
 app.listen(port, () => {
     console.log(`server is runing ${port}`);
