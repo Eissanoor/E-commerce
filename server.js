@@ -4,7 +4,7 @@ const hbs = require("hbs");
 const path = require("path");
 const dotenv = require("dotenv");
 const bodyparser = require("body-parser");
-dotenv.config({ path: 'config.env' })
+// dotenv.config({ path: 'config.env' })
 const multer = require('multer');
 const crypto = require("crypto");
 ////
@@ -43,6 +43,39 @@ const Reset = require("./models/otp");
 ////phone authentication
 const config = require("./config")
 const client = require('twilio')(config.accountID, config.authToken);
+/////login otp
+
+app.get("/varify", (req, res) => {
+
+    client
+        .verify
+        .services(config.serviceID)
+        .verifications
+        .create({
+            to: `+${req.query.phonenumber}`,
+            channel: `${req.query.channel}`
+        }).then((data) => {
+            res.status(200).send(data)
+        })
+})
+
+app.get("/varify1", (req, res) => {
+    client
+        .verify
+        .services(config.serviceID)
+        .verificationChecks
+        .create({
+            to: `+${req.query.phonenumber}`,
+            code: `${req.query.code}`
+        }).then((data) => {
+            res.status(200).send(data)
+        })
+
+})
+
+
+
+
 
 const Addpro = require("./models/addproduct")
     //database
@@ -204,35 +237,6 @@ app.get("/otp", (req, res) => {
         .catch(error => console.log(error))
 })
 
-/////login otp
-
-app.get("/varify", (req, res) => {
-
-    client
-        .verify
-        .services(config.serviceID)
-        .verifications
-        .create({
-            to: `+${req.query.phonenumber}`,
-            channel: `${req.query.channel}`
-        }).then((data) => {
-            res.status(200).send(data)
-        })
-})
-
-app.get("/varify1", (req, res) => {
-    client
-        .verify
-        .services(config.serviceID)
-        .verificationChecks
-        .create({
-            to: `+${req.query.phonenumber}`,
-            code: `${req.query.code}`
-        }).then((data) => {
-            res.status(200).send(data)
-        })
-
-})
 
 ///add costomer
 app.post("/addnew", upload.single('profile'), async(req, res) => {
