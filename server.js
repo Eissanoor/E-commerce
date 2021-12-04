@@ -119,6 +119,7 @@ app.get("/register", async(req, res) => {
 
 })
 const Register = require("./models/register");
+const { log } = require('console');
 app.post("/register", async(req, res) => {
 
         try {
@@ -352,6 +353,7 @@ app.post("/addpro", upload.single('profile'), async(req, res) => {
 
 
         })
+        console.log(value + value2);
 
         ///api
         // res.send(registerEmp);
