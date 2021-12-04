@@ -6,6 +6,8 @@ const empoleeSchema = new mongoose.Schema({
         lastname: String,
         store: String,
         email: String,
+        value: Number,
+        value2: Number,
         phone: Number,
         joinDate: Date,
         des: String,

@@ -338,14 +338,15 @@ app.post("/addpro", upload.single('profile'), async(req, res) => {
         const addEmp = new Addpro({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
-            company: req.body.company,
+            store: req.body.store,
             email: req.body.email,
+            value: req.body.value,
+            value2: req.body.value2,
+            total: value + value2,
             phone: req.body.phone,
-            date: new Date(),
-            city: req.body.city,
-            state: req.body.state,
-            zcode: req.body.zcode,
-            profile: req.file.filename,
+            joinDate: new Date(),
+            des: req.body.des,
+            profile: req.file.filename
 
 
         })
