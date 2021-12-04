@@ -353,7 +353,7 @@ app.post("/addpro", upload.single('profile'), async(req, res) => {
 
 
         })
-        console.log(total);
+
 
         ///api
         // res.send(registerEmp);
