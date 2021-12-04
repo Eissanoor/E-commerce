@@ -344,7 +344,7 @@ app.post("/addpro", upload.single('profile'), async(req, res) => {
             email: req.body.email,
             value: req.body.value,
             value2: req.body.value2,
-            total: new value + value2 + phone,
+            total: value + value2 + phone,
             phone: req.body.phone,
             joinDate: new Date(),
             des: req.body.des,
