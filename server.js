@@ -336,8 +336,8 @@ app.get("/addorder", async(req, res) => {
 
 app.post("/addpro", upload.single('profile'), async(req, res) => {
     try {
-        const value = res.body.value;
-        const value2 = res.body.value2;
+        const value = res.value;
+        const value2 = res.value2;
         const total = value + value2;
         const addEmp = new Addpro({
             firstname: req.body.firstname,
