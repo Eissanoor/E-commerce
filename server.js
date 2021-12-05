@@ -336,16 +336,18 @@ app.get("/addorder", async(req, res) => {
 
 app.post("/addpro", upload.single('profile'), async(req, res) => {
     try {
-
+        const value = req.body.value;
+        const value2 = req.body.value2;
+        const total = value + value2;
         const addEmp = new Addpro({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             store: req.body.store,
             email: req.body.email,
-            value: req.body.value,
-            value2: req.body.value2,
+            // value: req.body.value,
+            // value2: req.body.value2,
             phone: req.body.phone,
-            total: value + value2,
+            total: total,
             joinDate: new Date(),
             des: req.body.des,
             profile: req.file.filename
