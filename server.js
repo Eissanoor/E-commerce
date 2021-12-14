@@ -151,7 +151,7 @@ app.post("/register", async(req, res) => {
 
 
         } catch (e) {
-
+s
             res.status(400).send(e);
         }
 
@@ -174,7 +174,7 @@ app.get("/index", (req, res) => {
     })
     //loging check
 
-app.post("/login", async(req, res) => {
+app.post("/login",  async(req, res) => {
 
     try {
         const email = req.body.email;
@@ -199,10 +199,10 @@ app.post("/otp", async(req, res) => {
 
     try {
 
-        const email = req.body.email;
+        const email  =  req.body.email;
         console.log(email);
 
-        const useremail = await Register.findOne({ email })
+        const useremail =  await Register.findOne({ email })
         console.log(useremail);
 
         if (useremail.email === email) {
@@ -275,6 +275,18 @@ app.post("/addnew", upload.single('profile'), async(req, res) => {
 app.get("/addnew", async(req, res) => {
 
     const getmens = await Addnew.find({});
+    res.status(201).send(getmens);
+})
+////part of addnew customer,   []][][][][] it is just show MY CUSTOMER
+app.get("/my-customer", async(req, res) => {
+
+    const getmens = await Addnew.find({},{
+
+        _id:0,
+        firstname:1,
+        lastname:1,
+        profile:1
+    });
     res.status(201).send(getmens);
 })
 
@@ -370,9 +382,9 @@ app.post("/addpro", upload.single('profile'), async(req, res) => {
 
 
 })
-app.get("/addpro", async(req, res) => {
+app.get("/addpro", async(req, res, total) => {
 
-    const getmens = await Addpro.find({});
+    const getmens = await Addpro.find({}, { total: { $add: ["$value", "$value2"] } });
     res.status(201).send(getmens);
 })
 
@@ -423,18 +435,49 @@ app.post("/order", upload.single('profile'), async(req, res) => {
 
 app.get("/order", async(req, res) => {
 
+    const getorder = await Order.find({} );
+    res.status(201).send(getorder);
+})
+
+app.get("/active-order", async(req, res) => {
+
     const getorder = await Order.find({},
 
         {
+            _id:0,
             name: 1,
             date: 1,
             shippingAddress: 1,
-            email: 1
+            email: 1,
+            profile:1,
+            OrderId:1
         },
 
     );
     res.status(201).send(getorder);
 })
+
+app.get("/order-history", async(req, res) => {
+
+    const getorder = await Order.find({},
+
+        {
+            _id:0,
+            name: 1,
+            date: 1,
+            shippingAddress: 1,
+            email: 1,
+            profile:1,
+            OrderId:1
+        },
+
+    );
+    res.status(201).send(getorder);
+})
+
+
+
+
 
 
 
