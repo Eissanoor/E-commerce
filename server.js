@@ -36,16 +36,16 @@ var upload = multer({
     storage: storage,
     limits: { fileSize: 100000 }
 });
-app.use('/profile', express.static('upload'));
+app.use('/profile', express.static('public/upload'));
 
-app.post("/upload", (req, res) => {
+app.post("/upload",  upload.single('profile'), (req, res) => {
 
+    console.log(req.file);
     res.json({
         success: 1,
-        profile_url: `http://localhost:2000/profile/${req.file.filename}`
+        profile_url: `http://localhost:8000/profile/${req.file.filename}`
 
     })
-    console.log(req.file);
 })
 
 //registeration module
@@ -275,7 +275,12 @@ app.post("/addnew", upload.single('profile'), async(req, res) => {
 
         //database collection ok 
         const addemploee = await addEmp.save();
-        res.status(201).send(addemploee);
+        res.status(201).json({
+            email: req.body.email,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            profile: `http://localhost:8000/profile/${req.file.filename}`,
+        });
 
     } catch (e) {
         console.log(e);
@@ -291,16 +296,23 @@ app.get("/addnew", async(req, res) => {
     res.status(201).send(getmens);
 })
 ////part of addnew customer,   []][][][][] it is just show MY CUSTOMER
-app.get("/my-customer", async(req, res) => {
+app.get("/my-customer", upload.single('profile'), async(req, res) => {
 
     const getmens = await Addnew.find({},{
 
         _id:0,
+        email:1,
         firstname:1,
         lastname:1,
         profile:1
+    },{ new: true});
+    res.status(201).json({
+        getmens,
+        email: req.body.email,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        profile: req.file.filename,
     });
-    res.status(201).send(getmens);
 })
 
 app.get("/addnew/:id", async(req, res) => {
