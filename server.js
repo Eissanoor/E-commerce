@@ -279,7 +279,7 @@ app.post("/addnew", upload.single('profile'), async(req, res) => {
             email: req.body.email,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
-            profile: `http://localhost:8000/profile/${req.file.filename}`,
+            profile: `https://comcodekindler.herokuapp.com/profile/${req.file.filename}`,
         });
 
     } catch (e) {
