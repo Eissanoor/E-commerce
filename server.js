@@ -296,24 +296,45 @@ app.get("/addnew", async(req, res) => {
     res.status(201).send(getmens);
 })
 ////part of addnew customer,   []][][][][] it is just show MY CUSTOMER
-app.get("/my-customer", upload.single('profile'), async(req, res) => {
+app.post("/my-customer",upload.single('profile'),  async(req, res) => {
 
-    const getmens = await Addnew.find({},{
+    try {
+        const addEmp = new Addnew({
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            company: req.body.company,
+            email: req.body.email,
+            phone: req.body.phone,
+            date: new Date(),
+            city: req.body.city,
+            state: req.body.state,
+            zcode: req.body.zcode,
+            profile: req.file.filename,
 
-        _id:0,
-        email:1,
-        firstname:1,
-        lastname:1,
-        profile:1
-    },{ new: true});
-    res.status(201).json({
-        getmens,
-        email: req.body.email,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        profile: req.file.filename,
-    });
+
+        })
+
+        ///api
+        // res.send(registerEmp);
+
+        //database collection ok 
+        const addemploee = await addEmp.save();
+        res.status(201).json({
+            email: req.body.email,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            profile: `https://comcodekindler.herokuapp.com/profile/${req.file.filename}`,
+        });
+
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+
+
 })
+
+
 
 app.get("/addnew/:id", async(req, res) => {
 
