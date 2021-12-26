@@ -265,7 +265,7 @@ app.post("/addnew", upload.single('profile'), async(req, res) => {
             city: req.body.city,
             state: req.body.state,
             zcode: req.body.zcode,
-            profile: req.file.filename,
+            profile: `https://comcodekindler.herokuapp.com/profile/${req.file.filename}`,
 
 
         })
@@ -296,40 +296,15 @@ app.get("/addnew", async(req, res) => {
     res.status(201).send(getmens);
 })
 ////part of addnew customer,   []][][][][] it is just show MY CUSTOMER
-app.post("/my-customer", upload.single('profile'), async(req, res) => {
-    try {
-        const addEmp = new Addnew({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            company: req.body.company,
-            email: req.body.email,
-            phone: req.body.phone,
-            date: new Date(),
-            city: req.body.city,
-            state: req.body.state,
-            zcode: req.body.zcode,
-            profile: req.file.filename,
-
-
-        })
-
-        ///api
-        // res.send(registerEmp);
-
-        //database collection ok 
-        const addemploee = await addEmp.save();
-        res.status(201).json({
-            email: req.body.email,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            profile: `https://comcodekindler.herokuapp.com/profile/${req.file.filename}`,
-        });
-
-    } catch (e) {
-        console.log(e);
-        res.status(400).send(e);
-    }
-
+app.get("/my-customer", upload.single('profile'), async(req, res) => {
+    const getmens = await Addnew.find({},{
+        _id:0,
+        firstname:1,
+        email:1,
+        date:1,
+        profile:1
+    });
+    res.status(201).send(getmens);
   
 })
 
@@ -368,7 +343,7 @@ app.post("/addorder", upload.single('profile'), async(req, res) => {
             phone: req.body.phone,
             joinDate: new Date(),
             des: req.body.des,
-            profile: req.file.filename
+            profile: `https://comcodekindler.herokuapp.com/profile/${req.file.filename}`
         })
         console.log(req.file.filename);
         ///api
@@ -405,7 +380,7 @@ app.post("/addpro", upload.single('profile'), async(req, res) => {
             total: total,
             joinDate: new Date(),
             des: req.body.des,
-            profile: req.file.filename
+            profile: `https://comcodekindler.herokuapp.com/profile/${req.file.filename}`
 
 
         })
