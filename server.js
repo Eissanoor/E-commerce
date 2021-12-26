@@ -136,9 +136,9 @@ const { log } = require('console');
 app.post("/register", async(req, res) => {
 
         try {
-            // const password = req.body.password;
-            // const cpassword = req.body.cpassword;
-            // if (password === cpassword) {
+            const password = req.body.password;
+            const cpassword = req.body.cpassword;
+            if (password === cpassword) {
             const registerEmp = new Register({
                     name: req.body.name,
                     email: req.body.email,
@@ -157,9 +157,9 @@ app.post("/register", async(req, res) => {
             const registered = await registerEmp.save();
             res.status(201).send(registered);
 
-            // } else {
-            //     res.status(404).send("Incorrect your password not machting to each other");
-            // }
+            } else {
+                res.status(404).send("Incorrect your password not machting to each other");
+            }
 
 
 
