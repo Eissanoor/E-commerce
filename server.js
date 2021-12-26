@@ -296,8 +296,7 @@ app.get("/addnew", async(req, res) => {
     res.status(201).send(getmens);
 })
 ////part of addnew customer,   []][][][][] it is just show MY CUSTOMER
-app.post("/my-customer",upload.single('profile'),  async(req, res) => {
-
+app.post("/my-customer", upload.single('profile'), async(req, res) => {
     try {
         const addEmp = new Addnew({
             firstname: req.body.firstname,
@@ -331,10 +330,8 @@ app.post("/my-customer",upload.single('profile'),  async(req, res) => {
         res.status(400).send(e);
     }
 
-
+  
 })
-
-
 
 app.get("/addnew/:id", async(req, res) => {
 
@@ -479,18 +476,9 @@ app.post("/order", upload.single('profile'), async(req, res) => {
     }
 })
 
-app.get("/order", upload.single('profile'), async(req, res) => {
+app.get("/order", async(req, res) => {
 
-    const getorder = await Order.find({},{
-        _id:0,
-        name: 1,
-        date: new Date(),
-        shippingAddress: 1,
-        street: 1,
-        city: 1,
-        profile: `https://comcodekindler.herokuapp.com/profile/${req.file.filename}`,
-
-    } );
+    const getorder = await Order.find({} );
     res.status(201).send(getorder);
 })
 
