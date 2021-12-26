@@ -479,9 +479,18 @@ app.post("/order", upload.single('profile'), async(req, res) => {
     }
 })
 
-app.get("/order", async(req, res) => {
+app.get("/order", upload.single('profile'), async(req, res) => {
 
-    const getorder = await Order.find({} );
+    const getorder = await Order.find({},{
+        _id:0,
+        name: 1,
+        date: new Date(),
+        shippingAddress: 1,
+        street: 1,
+        city: 1,
+        profile: `https://comcodekindler.herokuapp.com/profile/${req.file.filename}`,
+
+    } );
     res.status(201).send(getorder);
 })
 
