@@ -164,7 +164,7 @@ app.post("/register", async(req, res) => {
 
 
         } catch (e) {
-
+s
             res.status(400).send(e);
         }
 
@@ -190,13 +190,12 @@ app.get("/index", (req, res) => {
 app.post("/login",  async(req, res) => {
 
     try {
-     
         const email = req.body.email;
         const password = req.body.password;
 
         const useremail = await Register.findOne({ email })
         if (useremail.password === password) {
-            res.status(200).send(Register);
+            res.status(200).send("sucessful your login");
         } else {
             res.status(404).send("password are not machting")
         }
@@ -212,7 +211,6 @@ app.post("/login",  async(req, res) => {
 
 app.post("/otp", async(req, res) => {
 
-//////
 
     try {
 
