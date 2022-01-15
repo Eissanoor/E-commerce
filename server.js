@@ -190,12 +190,13 @@ app.get("/index", (req, res) => {
 app.post("/login",  async(req, res) => {
 
     try {
+        let response = "sucessful your login";
         const email = req.body.email;
         const password = req.body.password;
 
         const useremail = await Register.findOne({ email })
         if (useremail.password === password) {
-            res.status(200).send("sucessful your login");
+            res.status(200).json(response);
         } else {
             res.status(404).send("password are not machting")
         }
