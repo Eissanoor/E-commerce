@@ -196,7 +196,7 @@ app.post("/login",  async(req, res) => {
 
         const useremail = await Register.find({})
         if (useremail.password === password) {
-            res.status(200).json(Register);
+            res.status(200).send(Register);
         } else {
             res.status(404).send("password are not machting")
         }
