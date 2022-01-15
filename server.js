@@ -164,7 +164,7 @@ app.post("/register", async(req, res) => {
 
 
         } catch (e) {
-s
+
             res.status(400).send(e);
         }
 
