@@ -185,7 +185,7 @@ app.get("/index", (req, res) => {
         res.render("index");
 
     })
-    //loging check
+    //loging 
 
 app.post("/login",  async(req, res) => {
 
@@ -195,15 +195,15 @@ app.post("/login",  async(req, res) => {
 
         const useremail = await Register.findOne({ email })
         if (useremail.password === password) {
-            res.status(200).send("Successful");
+            res.status(200).json("Successful");
         } else {
-            res.status(404).send("password are not machting")
+            res.status(404).json("password are not machting")
         }
 ////////
 //////////
 ////////
     } catch (error) {
-        res.status(400).send("invalid email")
+        res.status(400).json("invalid email")
 
     }
 
