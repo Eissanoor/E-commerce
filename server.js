@@ -227,7 +227,7 @@ app.post("/otp", async(req, res) => {
             console.log(otp)
 
         } else {
-            res.status(400).send("you are not correct email");
+            res.status(400).json("you are not correct email");
 
         }
 
@@ -238,7 +238,7 @@ app.post("/otp", async(req, res) => {
 
 
     } catch (e) {
-        res.status(400).send(" invalid your email");
+        res.status(400).json(" invalid your email");
     }
 })
 
