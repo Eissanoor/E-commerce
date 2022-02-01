@@ -1,23 +1,20 @@
 const mongoose = require("mongoose");
 
 const empoleeSchema = new mongoose.Schema({
+  firstname: String,
+  lastname: String,
+  company: String,
+  email: String,
+  phone: Number,
+  date: Date,
+  city: String,
+  state: String,
+  zcode: Number,
+  profile: String,
 
-        firstname: String,
-        lastname: String,
-        company: String,
-        email: String,
-        phone: Number,
-        date: Date,
-        city: String,
-        state: Number,
-        zcode: Number,
-        profile: String,
-
-        ////
-
-
-    })
-    /////colletion
+  ////
+});
+/////colletion
 const Addnew = new mongoose.model("Addnew", empoleeSchema);
 
 module.exports = Addnew;
