@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const bodyparser = require("body-parser");
 // dotenv.config({ path: 'config.env' })
 const multer = require("multer");
+const Addcustomer = require("./models/addcustomer");
 const crypto = require("crypto");
 ////
 ///////////////////////////////////////////////
@@ -138,6 +139,7 @@ app.post("/register", async (req, res) => {
 
       //database collection ok
       const registered = await registerEmp.save();
+      console.log(registered);
       res.status(201).send(registered);
     } else {
       res
@@ -288,6 +290,32 @@ app.patch("/addnew/:id", async (req, res) => {
 app.post("/addorder", upload.single("profile"), async (req, res) => {
   try {
     const addorder = new Addorder({
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      store: req.body.store,
+      email: req.body.email,
+      phone: req.body.phone,
+      joinDate: new Date(),
+      des: req.body.des,
+      profile: `https://comcodekindler.herokuapp.com/profile/${req.file.filename}`,
+    });
+    console.log(req.file.filename);
+    ///api
+    // res.send(registerEmp);
+
+    //database collection ok
+    const addemploee = await addorder.save();
+    res.status(201).send("   new Order is Saved❤");
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
+//--------------------------------------------------
+
+app.post("/add-customer", upload.single("profile"), async (req, res) => {
+  try {
+    const addorder = new Addcustomer({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       store: req.body.store,
